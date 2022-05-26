@@ -12,6 +12,8 @@ if __name__=='__main__':
     connectionSocket.bind(binds)    #bind socket to port
     connectionSocket.listen(10)     #listen new connection requests
 
+    print("Server is listening to port: " + str(port))
+
     mthread=[]
 
     for i in range(workers):
@@ -29,7 +31,7 @@ if __name__=='__main__':
             mthread[i].join()
         except InterruptedError as e:
             pass
-    st.calculatePi()
+    st.printPi()
 
 
 

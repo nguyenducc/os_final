@@ -7,12 +7,12 @@ class MasterProtocol:
         self.id=id
 
     def prepare_request(self):
-        return self.piObject.get_steps()+" "+str(self.id)         #master (server) will send steps and worker id to each worker
+        return self.piObject.get_steps()+' '+str(self.id)         #master (server) will send steps and worker id to each worker
 
 
-    def process_reply(self,the_input):        #master(server) will recieve partial sum of each worker and add it to global sum
-        _partialSum=int(the_input)
-        self.piObject.addToglobSum(_partialSum)
+    def process_reply(self,the_input):        #master(server) will recieve partial pi of each worker and add it to global pi
+        _partialPi=float(the_input)
+        self.piObject.addToglobPi(_partialPi)
 
 
 

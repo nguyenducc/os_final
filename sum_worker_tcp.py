@@ -2,7 +2,7 @@ import socket
 from worker_protocol import workerProtocol
 
 HOST='localhost'
-PORT=1234
+PORT=1024
 WORKERS=4
 
 if __name__ == '__main__':             #Client recieves steps and worker id for partial computation of integral sum from Server
@@ -15,7 +15,7 @@ if __name__ == '__main__':             #Client recieves steps and worker id for 
 
     app = workerProtocol(WORKERS)           #create an instance of worker protocol
 
-    inmsg = data_socket.recv(1024)            #recieve number of steps from server
+    inmsg = data_socket.recv(1024)            #recieve number of steps & id from server
     outmsg = app.compute(inmsg.decode())      #compute partial contribution to sum
     data_socket.send(outmsg.encode())        #partial sum of worker thread is sent to server
     data_socket.close()

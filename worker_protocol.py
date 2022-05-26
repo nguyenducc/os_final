@@ -7,7 +7,7 @@ class workerProtocol:
     def compute(self,the_input):         #each client will calculate a partial contribution for global sum
 
         print(the_input)
-        split=the_input.split(' ')      #message is a string containg worker id and number of steps
+        split=the_input.split()      #message is a string containg worker id and number of steps
         print(split)
         steps=int(split[0])
         myId=int(split[1])
@@ -24,9 +24,10 @@ class workerProtocol:
             partialSum += 4.0 / (1.0 + x * x)
             i=i+self.num_workers
 
-        the_output=str(partialSum)
+        myPi=step*partialSum
+        the_output=str(myPi)
 
-        return the_output            #returns partial sum as a string
+        return the_output            #returns partial pi as a string
 
 
 
