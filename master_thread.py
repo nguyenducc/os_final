@@ -1,6 +1,6 @@
 import threading
 from master_protocol import MasterProtocol
-from globPi import Globpi
+
 
 class MasterThread(threading.Thread):
 
@@ -13,9 +13,14 @@ class MasterThread(threading.Thread):
     def run(self):
         app=MasterProtocol(self.globpi, self.id)  #create an instance of the class MasterProtocol
         outmsg=app.prepare_request()   #the outmsg contains a string with steps and worker id
-        self.socket.sendall(outmsg.encode())  #server sends message(steps,id) to each worker(clients)
-        inmsg=self.socket.recv(1024)           #server recieves partial sum from each worker
-        app.process_reply(inmsg.decode())      #adds partial sum to global sum
+        try:
+            self.socket.sendall(outmsg.encode())  #server sends message(steps,id) to each worker(clients)
+            inmsg=self.socket.recv(1024)           #server recieves partial pi from each worker
+            app.process_reply(inmsg.decode())      #adds partial pi to global pi
+
+        except:
+            print("I/O Error")
+
         self.socket.close()
         print("Data socket closed")
 
