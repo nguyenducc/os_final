@@ -15,8 +15,12 @@ if __name__ == '__main__':             #Client recieves steps and worker id for 
 
     app = workerProtocol(WORKERS)           #create an instance of worker protocol
 
-    inmsg = data_socket.recv(1024)            #recieve number of steps & id from server
-    outmsg = app.compute(inmsg.decode())      #compute partial contribution to sum
-    data_socket.send(outmsg.encode())        #partial sum of worker thread is sent to server
+    try:
+        inmsg = data_socket.recv(1024)            #recieve number of steps & id from server
+        outmsg = app.compute(inmsg.decode())      #compute partial contribution to pi
+        data_socket.send(outmsg.encode())        #partial pi of worker thread is sent to server
+    except:
+        print("I/O Error")
+
     data_socket.close()
 
