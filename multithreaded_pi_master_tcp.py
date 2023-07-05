@@ -10,7 +10,7 @@ binds=("localhost",port)
 if __name__=='__main__':
     connectionSocket=socket.socket(socket.AF_INET,socket.SOCK_STREAM)    #create socket instance
     connectionSocket.bind(binds)    #bind socket to port
-    connectionSocket.listen(10)     #listen new connection requests
+    connectionSocket.listen(10)     #listen new connection request
 
     print("Server is listening to port: " + str(port))
 

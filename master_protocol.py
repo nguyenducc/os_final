@@ -5,11 +5,9 @@ class MasterProtocol:
     def __init__(self, piObject: Globpi, id: int):
         """
         Initializes an instance of the MasterProtocol class.
-
         Args:
             piObject (Globpi): An instance of the Globpi class representing the global pi object.
             id (int): The ID of the worker.
-
         Returns:
             None
         """
@@ -19,7 +17,6 @@ class MasterProtocol:
     def prepare_request(self):
         """
         Prepares the request to be sent to the worker.
-
         Returns:
             str: The prepared request containing the steps and worker ID.
         """
@@ -28,12 +25,6 @@ class MasterProtocol:
     def process_reply(self, the_input):
         """
         Processes the reply received from a worker.
-
-        Args:
-            the_input (str): The partial value of pi received from the worker.
-
-        Returns:
-            None
         """
         _partialPi = float(the_input)
         self.piObject.addToglobPi(_partialPi)
