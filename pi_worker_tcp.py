@@ -16,7 +16,7 @@ if __name__ == '__main__':             #Client recieves steps and worker id for 
     app = workerProtocol(WORKERS)           #create an instance of worker protocol
 
     try:
-        inmsg = data_socket.recv(1024)            #recieve number of steps & id from server
+        inmsg = data_socket.recv(1024)            #Nhận số bước và id từ máy chủ
         outmsg = app.compute(inmsg.decode())      #compute partial contribution to pi
         data_socket.send(outmsg.encode())        #partial pi of worker thread is sent to server
     except:
